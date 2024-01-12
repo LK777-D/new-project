@@ -8,6 +8,7 @@ const AuthenticationCtxProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [reg, setReg] = useState(false);
   const [authIsOpen, setAuthIsopen] = useState(false);
+  const [token, setToken] = useState(null);
 
   const router = useRouter();
   const register = async (e) => {
@@ -31,7 +32,7 @@ const AuthenticationCtxProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://174.138.59.141/api/v1/auth/register",
+        "http://174.138.59.141:8080/api/v1/auth/register",
         requestOptions
       );
 
@@ -39,8 +40,12 @@ const AuthenticationCtxProvider = ({ children }) => {
         throw new Error("Registration failed");
       }
 
-      const result = await response.text();
+      const result = await response.json();
+
       console.log(result);
+      setToken(result.token);
+      console.log(result.token);
+      console.log(token);
       setAuthIsopen(false);
       router.push("/");
 
@@ -69,15 +74,16 @@ const AuthenticationCtxProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://174.138.59.141/api/v1/auth/authenticate",
+        "http://174.138.59.141:8080/api/v1/auth/authenticate",
         requestOptions
       );
 
       if (!response.ok) {
         throw new Error("Login failed");
       }
-      const result = await response.text();
+      const result = await response.json();
       console.log(result);
+      setToken(result.token);
       router.push("/");
       setAuthIsopen(false);
     } catch (error) {
@@ -97,6 +103,7 @@ const AuthenticationCtxProvider = ({ children }) => {
     setReg,
     authIsOpen,
     setAuthIsopen,
+    token,
   };
 
   return <authCtx.Provider value={ctxValue}>{children}</authCtx.Provider>;

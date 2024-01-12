@@ -2,8 +2,8 @@
 import { useAuthCtx } from "../context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
-import userImg from "@/assets/user.png";
-import AuthForm from "@/components/AuthForm";
+import img from "../assets/user.png";
+import AuthForm from "./AuthForm";
 const Navbar = () => {
   const { authIsOpen, setAuthIsopen } = useAuthCtx();
   return (
@@ -20,7 +20,7 @@ const Navbar = () => {
           </li>
         </ul>
         <button onClick={() => setAuthIsopen((prev) => !prev)}>
-          <Image alt="user" src={userImg} width={40} height={40} />
+          <Image alt="user" src={img} width={40} height={40} />
         </button>
       </nav>
       <div>{authIsOpen && <AuthForm />}</div>

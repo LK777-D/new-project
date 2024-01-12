@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useAuthCtx } from "@/context/AuthContext";
+import { useAuthCtx } from "../context/AuthContext";
 const AuthForm = () => {
   const { reg, register, setReg, setUsername, setEmail, setPassword, login } =
     useAuthCtx();

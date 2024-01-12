@@ -6,5 +6,24 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: var(--font--play); */
+  font-family: var(--font--abril);
+}
+
+.sliderimg1 {
+  background-image: url("../assets/hotel.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sliderimg2 {
+  background-image: url("../assets/restaurant.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.fontabril {
+  font-family: var(--font--abril);
 }

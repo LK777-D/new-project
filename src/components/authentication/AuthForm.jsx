@@ -1,18 +1,18 @@
 "use client";
 import { useState } from "react";
-import { useAuthCtx } from "../context/AuthContext";
+import { useAuthCtx } from "../../context/AuthContext";
 const AuthForm = () => {
   const { reg, register, setReg, setUsername, setEmail, setPassword, login } =
     useAuthCtx();
   return (
     <div
-      className="flex items-center justify-center   w-full mx-auto h-[92vh]
+      className="flex fixed top-[10vh] z-20 items-center justify-center  w-full mx-auto h-[92vh]
      shadow-lg overflow-hidden"
     >
       <form
         autoComplete="on"
         onSubmit={reg ? register : login}
-        className=" z-10 mx-auto flex flex-col items-center w-[25rem] rounded-xl bg-gray-800 bg-opacity-50 px-16 py-4 shadow-lg  max-sm:px-8"
+        className="  mx-auto flex flex-col items-center w-[25rem] rounded-xl bg-gray-800 bg-opacity-50 px-16 py-4 shadow-lg  max-sm:px-8"
       >
         <div>
           <span>Please enter login details</span>

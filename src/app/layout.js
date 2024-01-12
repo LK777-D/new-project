@@ -1,13 +1,20 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navigation/Navbar";
 import AuthenticationCtxProvider from "../context/AuthContext";
-import { Play } from "next/font/google";
+import { Play, Abril_Fatface, Bree_Serif } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-const play = Play({
+const bree = Bree_Serif({
   subsets: ["latin"],
   weight: "400",
+  variable: "--font-bree",
+});
+const abril = Abril_Fatface({
+  weight: ["400"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
   variable: "--font-play",
 });
 export const metadata = {
@@ -18,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={` ${play.variable} relative `}>
+      <body className={`${bree.className} ${abril.variable}`}>
         <AuthenticationCtxProvider>
           <Navbar />
         </AuthenticationCtxProvider>

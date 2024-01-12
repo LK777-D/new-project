@@ -31,7 +31,7 @@ const AuthenticationCtxProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://167.99.61.234:8080/api/v1/auth/register",
+        "http://174.138.59.141/api/v1/auth/register",
         requestOptions
       );
 
@@ -69,7 +69,7 @@ const AuthenticationCtxProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        "http://167.99.61.234:8080/api/v1/auth/authenticate",
+        "http://174.138.59.141/api/v1/auth/authenticate",
         requestOptions
       );
 

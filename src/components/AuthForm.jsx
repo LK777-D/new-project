@@ -10,6 +10,7 @@ const AuthForm = () => {
      shadow-lg overflow-hidden"
     >
       <form
+        autoComplete="on"
         onSubmit={reg ? register : login}
         className=" z-10 mx-auto flex flex-col items-center w-[25rem] rounded-xl bg-gray-800 bg-opacity-50 px-16 py-4 shadow-lg  max-sm:px-8"
       >

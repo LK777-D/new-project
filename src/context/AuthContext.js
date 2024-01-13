@@ -10,6 +10,7 @@ const AuthenticationCtxProvider = ({ children }) => {
   const [authIsOpen, setAuthIsopen] = useState(false);
   const [token, setToken] = useState(null);
   const [modalIsopen, setModalIsopen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const router = useRouter();
 
@@ -51,10 +52,10 @@ const AuthenticationCtxProvider = ({ children }) => {
       const result = await response.json();
 
       console.log(result);
+      setUser(result);
       setToken(result.token);
       localStorage.setItem("authToken", result.token);
-      console.log(result.token);
-      console.log(token);
+
       setAuthIsopen(false);
       router.push("/");
 
@@ -92,8 +93,12 @@ const AuthenticationCtxProvider = ({ children }) => {
       }
       const result = await response.json();
       console.log(result);
+
+      setUser(result);
       setToken(result.token);
+
       localStorage.setItem("authToken", result.token);
+
       router.push("/");
       setAuthIsopen(false);
     } catch (error) {
@@ -130,6 +135,7 @@ const AuthenticationCtxProvider = ({ children }) => {
     openModal,
     closeModal,
     logout,
+    user,
   };
 
   return <authCtx.Provider value={ctxValue}>{children}</authCtx.Provider>;

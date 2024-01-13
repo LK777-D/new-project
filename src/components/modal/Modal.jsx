@@ -34,6 +34,7 @@ const ModalPopUp = ({
       style={customStyles}
       isOpen={modalIsopen}
       onRequestClose={closeModal}
+      ariaHideApp={false}
     >
       <div className="flex flex-col gap-2 justify-center items-center">
         <h1>{heading}</h1>

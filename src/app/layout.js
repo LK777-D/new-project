@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navigation/Navbar";
 import AuthenticationCtxProvider from "../context/AuthContext";
+import AddRestCtxProvider from "../context/addRestContext";
 import { Play, Abril_Fatface, Bree_Serif } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${bree.className} ${abril.variable}`}>
         <AuthenticationCtxProvider>
-          <Navbar />
+          <AddRestCtxProvider>
+            <Navbar />
+            {children}
+          </AddRestCtxProvider>
         </AuthenticationCtxProvider>
-        {children}
       </body>
     </html>
   );

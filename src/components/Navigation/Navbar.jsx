@@ -13,6 +13,7 @@ const Navbar = () => {
     authIsOpen,
     setAuthIsopen,
     token,
+    user,
     openModal,
     setModalIsopen,
   } = useAuthCtx();
@@ -37,6 +38,10 @@ const Navbar = () => {
             {" "}
             <Link href={"/restaurants"}>Restaurants</Link>
           </li>
+          <li className="transition hover:text-gray-500 duration-150 ease-linear">
+            {" "}
+            <Link href={"/addrestaurant"}>add</Link>
+          </li>
         </ul>
         <div>
           {!token ? (
@@ -54,7 +59,7 @@ const Navbar = () => {
               Logout
             </button>
           )}
-          <span>{token && token.slice(0, 5)}</span>
+          <span>{user && user?.userEmail}</span>
         </div>
       </nav>
       <div>{authIsOpen && <AuthForm />}</div>

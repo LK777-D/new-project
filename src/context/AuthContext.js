@@ -9,6 +9,7 @@ const AuthenticationCtxProvider = ({ children }) => {
   const [reg, setReg] = useState(false);
   const [authIsOpen, setAuthIsopen] = useState(false);
   const [token, setToken] = useState(null);
+  const [modalIsopen, setModalIsopen] = useState(false);
 
   const router = useRouter();
   const register = async (e) => {
@@ -90,6 +91,13 @@ const AuthenticationCtxProvider = ({ children }) => {
       console.error("Error during login:", error.message);
     }
   };
+
+  const openModal = () => {
+    setModalIsopen(true);
+  };
+  const closeModal = () => {
+    setModalIsopen(false);
+  };
   const word = 100;
 
   const ctxValue = {
@@ -104,6 +112,10 @@ const AuthenticationCtxProvider = ({ children }) => {
     authIsOpen,
     setAuthIsopen,
     token,
+    modalIsopen,
+    setModalIsopen,
+    openModal,
+    closeModal,
   };
 
   return <authCtx.Provider value={ctxValue}>{children}</authCtx.Provider>;

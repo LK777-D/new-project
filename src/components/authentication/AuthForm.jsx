@@ -1,9 +1,18 @@
 "use client";
 import { useState } from "react";
 import { useAuthCtx } from "../../context/AuthContext";
+
 const AuthForm = () => {
-  const { reg, register, setReg, setUsername, setEmail, setPassword, login } =
-    useAuthCtx();
+  const {
+    reg,
+    setAuthIsopen,
+    register,
+    setReg,
+    setUsername,
+    setEmail,
+    setPassword,
+    login,
+  } = useAuthCtx();
   return (
     <div
       className="flex bg-gray-400/30 fixed top-[8vh] lg:top-[10vh] z-20 items-center justify-center  w-full mx-auto h-[92vh] lg:h-[90vh]
@@ -11,9 +20,9 @@ const AuthForm = () => {
     >
       <form
         onSubmit={reg ? register : login}
-        className=" text-white  mx-auto flex flex-col items-center w-[80%rem] rounded-xl bg-gray-800 bg-opacity-50 px-16 py-4 shadow-lg  max-sm:px-8"
+        className=" text-white  mx-auto flex flex-col items-center w-[80%rem] rounded-xl bg-gray-800 bg-opacity-80 px-16 py-4 shadow-lg  max-sm:px-8"
       >
-        <div>
+        <div className=" my-5">
           <span>Please enter login details</span>
         </div>
         <div>

@@ -10,13 +10,13 @@ body {
 }
 
 .sliderimg1 {
-  background-image: url("../assets/hotel.webp");
+  background-image: url("../assets/hotel2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .sliderimg2 {
-  background-image: url("../assets/restaurant.jpg");
+  background-image: url("../assets/restaurant2.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

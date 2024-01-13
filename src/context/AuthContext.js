@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 const authCtx = createContext();
 const AuthenticationCtxProvider = ({ children }) => {
@@ -12,6 +12,13 @@ const AuthenticationCtxProvider = ({ children }) => {
   const [modalIsopen, setModalIsopen] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
   const register = async (e) => {
     e.preventDefault();
 
@@ -45,6 +52,7 @@ const AuthenticationCtxProvider = ({ children }) => {
 
       console.log(result);
       setToken(result.token);
+      localStorage.setItem("authToken", result.token);
       console.log(result.token);
       console.log(token);
       setAuthIsopen(false);
@@ -85,13 +93,18 @@ const AuthenticationCtxProvider = ({ children }) => {
       const result = await response.json();
       console.log(result);
       setToken(result.token);
+      localStorage.setItem("authToken", result.token);
       router.push("/");
       setAuthIsopen(false);
     } catch (error) {
       console.error("Error during login:", error.message);
     }
   };
-
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem("authToken");
+    setModalIsopen(false);
+  };
   const openModal = () => {
     setModalIsopen(true);
   };
@@ -116,6 +129,7 @@ const AuthenticationCtxProvider = ({ children }) => {
     setModalIsopen,
     openModal,
     closeModal,
+    logout,
   };
 
   return <authCtx.Provider value={ctxValue}>{children}</authCtx.Provider>;

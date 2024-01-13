@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useAuthCtx } from "../../context/AuthContext";
 
 const AuthForm = () => {
@@ -12,14 +12,28 @@ const AuthForm = () => {
     setEmail,
     setPassword,
     login,
+    authIsOpen,
   } = useAuthCtx();
+  useEffect(() => {
+    if (authIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [authIsOpen]);
   return (
     <div
-      className="flex bg-gray-400/30 fixed top-[8vh] lg:top-[10vh] z-20 items-center justify-center  w-full mx-auto h-[92vh] lg:h-[90vh]
+      onClick={() => setAuthIsopen(false)}
+      className="flex bg-gray-400/30 fixed  top-[8vh] lg:top-[10vh] z-20 items-center justify-center  w-full mx-auto h-[92vh] lg:h-[90vh]
      shadow-lg overflow-hidden"
     >
       <form
         onSubmit={reg ? register : login}
+        onClick={(e) => e.stopPropagation()}
         className=" text-white  mx-auto flex flex-col items-center w-[80%rem] rounded-xl bg-gray-800 bg-opacity-80 px-16 py-4 shadow-lg  max-sm:px-8"
       >
         <div className=" my-5">

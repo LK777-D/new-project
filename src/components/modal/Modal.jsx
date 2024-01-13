@@ -2,7 +2,15 @@
 import { useAuthCtx } from "../../context/AuthContext";
 import Modal from "react-modal";
 
-const ModalPopUp = ({ mainText, heading, btn1, btn2, onClick1, onClick2 }) => {
+const ModalPopUp = ({
+  logout,
+  mainText,
+  heading,
+  btn1,
+  btn2,
+  onClick1,
+  onClick2,
+}) => {
   const customStyles = {
     overlay: {
       backgroundColor: "rgba(41, 35, 35, 0.5)", // Set your desired background color with opacity

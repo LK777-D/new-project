@@ -8,8 +8,14 @@ import AuthForm from "../authentication/AuthForm";
 import ModalPopUp from "../modal/Modal";
 
 const Navbar = () => {
-  const { authIsOpen, setAuthIsopen, token, openModal, setModalIsopen } =
-    useAuthCtx();
+  const {
+    logout,
+    authIsOpen,
+    setAuthIsopen,
+    token,
+    openModal,
+    setModalIsopen,
+  } = useAuthCtx();
 
   return (
     <>
@@ -18,6 +24,8 @@ const Navbar = () => {
         btn2="Logout"
         heading="Confirm Log Out"
         mainText={"Are You Sure You Want To Log Out?"}
+        onClick2={logout}
+        onClick1={() => setModalIsopen(false)}
       />
       <nav className="flex  items-center justify-around  h-[8vh] lg:h-[10vh] ">
         <span className="text-xl font-bold">LOGOO</span>

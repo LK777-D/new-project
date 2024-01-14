@@ -17,13 +17,14 @@ const AddRestCtxProvider = ({ children }) => {
   const token = user?.token;
   const restId = restDeatils?.id;
 
+  // create
   const addRestaurantInfo = async (e) => {
     e.preventDefault();
-    console.log(token);
-    console.log(userId);
+    const tokken = localStorage.getItem("authToken");
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Authorization", `Bearer ${tokken}`);
 
     const raw = JSON.stringify({
       addressLine1: addressLine1,
@@ -52,6 +53,11 @@ const AddRestCtxProvider = ({ children }) => {
       const result = await response.json();
       setRestDetails(result);
       console.log(result);
+      const newToken = response.headers.get("X-Access-Token");
+      console.log(newToken);
+      if (newToken) {
+        localStorage.setItem("authToken", newToken);
+      }
     } catch (error) {
       console.error("Error creating restaurant:", error.message);
     }
@@ -109,6 +115,10 @@ const AddRestCtxProvider = ({ children }) => {
 
       const result = await response.json();
       console.log(result);
+      const newToken = response.headers.get("X-Access-Token");
+      if (newToken) {
+        localStorage.setItem("authToken", newToken);
+      }
     } catch (error) {
       console.error("Error uploading images:", error.message);
     }

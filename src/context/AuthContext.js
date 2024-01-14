@@ -8,18 +8,11 @@ const AuthenticationCtxProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [reg, setReg] = useState(false);
   const [authIsOpen, setAuthIsopen] = useState(false);
-  const [token, setToken] = useState(null);
   const [modalIsopen, setModalIsopen] = useState(false);
   const [user, setUser] = useState(null);
 
   const router = useRouter();
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
   const register = async (e) => {
     e.preventDefault();
 
@@ -53,7 +46,6 @@ const AuthenticationCtxProvider = ({ children }) => {
 
       console.log(result);
       setUser(result);
-      setToken(result.token);
       localStorage.setItem("authToken", result.token);
 
       setAuthIsopen(false);
@@ -95,7 +87,6 @@ const AuthenticationCtxProvider = ({ children }) => {
       console.log(result);
 
       setUser(result);
-      setToken(result.token);
 
       localStorage.setItem("authToken", result.token);
 
@@ -105,7 +96,6 @@ const AuthenticationCtxProvider = ({ children }) => {
     }
   };
   const logout = () => {
-    setToken(null);
     localStorage.removeItem("authToken");
     setModalIsopen(false);
   };
@@ -115,10 +105,66 @@ const AuthenticationCtxProvider = ({ children }) => {
   const closeModal = () => {
     setModalIsopen(false);
   };
-  const word = 100;
+
+  const authTokenAfterRefresh = async () => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${authToken}`);
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+      try {
+        const response = await fetch(
+          "http://174.138.59.141:8080/api/v2/auth/authenticate",
+          requestOptions
+        );
+
+        const newToken = response.headers.get("X-Access-Token");
+
+        if (newToken) {
+          localStorage.setItem("authToken", newToken);
+          console.log(newToken);
+        }
+      } catch (error) {
+        console.error("Error checking token validity:", error.message);
+      }
+    }
+  };
+  const getUserDeatilsAfterRefresh = async () => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${authToken}`);
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+      try {
+        const response = await fetch(
+          `http://174.138.59.141:8080/api/v2/auth/getUser?token=${authToken}`,
+          requestOptions
+        );
+        const newToken = response.headers.get("X-Access-Token");
+        if (newToken) {
+          localStorage.setItem("authToken", newToken);
+        }
+        const result = await response.json();
+        setUser(result);
+        console.log(result);
+      } catch {}
+    }
+  };
+  useEffect(() => {
+    authTokenAfterRefresh();
+    getUserDeatilsAfterRefresh();
+  }, []);
 
   const ctxValue = {
-    word,
     setUsername,
     setPassword,
     setEmail,
@@ -128,7 +174,7 @@ const AuthenticationCtxProvider = ({ children }) => {
     setReg,
     authIsOpen,
     setAuthIsopen,
-    token,
+
     modalIsopen,
     setModalIsopen,
     openModal,

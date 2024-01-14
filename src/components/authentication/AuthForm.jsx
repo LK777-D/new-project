@@ -25,6 +25,7 @@ const AuthForm = () => {
       document.body.style.overflow = "auto";
     };
   }, [authIsOpen]);
+
   return (
     <div
       onClick={() => setAuthIsopen(false)}

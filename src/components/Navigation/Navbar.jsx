@@ -44,7 +44,7 @@ const Navbar = () => {
           </li>
         </ul>
         <div>
-          {!token ? (
+          {!user ? (
             <button
               onClick={() => setAuthIsopen((prev) => !prev)}
               className="px-3 py-1 rounded-xl bg-black text-white transition hover:bg-white hover:border hover:border-black hover:text-black duration-150 ease-linear "

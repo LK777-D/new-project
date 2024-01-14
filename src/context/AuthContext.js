@@ -99,7 +99,6 @@ const AuthenticationCtxProvider = ({ children }) => {
 
       localStorage.setItem("authToken", result.token);
 
-      router.push("/");
       setAuthIsopen(false);
     } catch (error) {
       console.error("Error during login:", error.message);

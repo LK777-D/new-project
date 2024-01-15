@@ -13,6 +13,7 @@ const AuthenticationCtxProvider = ({ children }) => {
 
   const router = useRouter();
 
+  // auth
   const register = async (e) => {
     e.preventDefault();
 
@@ -56,6 +57,7 @@ const AuthenticationCtxProvider = ({ children }) => {
       console.error("Error during registration:", error.message);
     }
   };
+
   const login = async (e) => {
     e.preventDefault();
 
@@ -95,8 +97,10 @@ const AuthenticationCtxProvider = ({ children }) => {
       console.error("Error during login:", error.message);
     }
   };
+
   const logout = () => {
     localStorage.removeItem("authToken");
+    setUser(null);
     setModalIsopen(false);
   };
   const openModal = () => {
@@ -106,6 +110,7 @@ const AuthenticationCtxProvider = ({ children }) => {
     setModalIsopen(false);
   };
 
+  // auth after refresh
   const authTokenAfterRefresh = async () => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
@@ -134,6 +139,7 @@ const AuthenticationCtxProvider = ({ children }) => {
       }
     }
   };
+
   const getUserDeatilsAfterRefresh = async () => {
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
@@ -174,7 +180,6 @@ const AuthenticationCtxProvider = ({ children }) => {
     setReg,
     authIsOpen,
     setAuthIsopen,
-
     modalIsopen,
     setModalIsopen,
     openModal,

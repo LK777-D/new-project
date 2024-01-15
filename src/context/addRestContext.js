@@ -11,13 +11,14 @@ const AddRestCtxProvider = ({ children }) => {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
   const [restDeatils, setRestDetails] = useState(null);
+  const [restaurants, setRestaurants] = useState([]);
   const { user } = useAuthCtx();
   const userEmail = user?.userEmail;
   const userId = user?.userId;
   const token = user?.token;
   const restId = restDeatils?.id;
 
-  // create
+  // create rest
   const addRestaurantInfo = async (e) => {
     e.preventDefault();
     const tokken = localStorage.getItem("authToken");
@@ -86,7 +87,6 @@ const AddRestCtxProvider = ({ children }) => {
 
     const base64Images = await Promise.all(imagePromises);
 
-    // Now you can use base64Images to send to the server
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -123,6 +123,8 @@ const AddRestCtxProvider = ({ children }) => {
       console.error("Error uploading images:", error.message);
     }
   };
+
+  // fetch rests
 
   const ctxValue = {
     setAddressLine1,

@@ -5,9 +5,9 @@ const RestList = async () => {
 
   return (
     <main>
-      <div>
+      <div className="grid grid-cols-3 gap-3 ">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.key}>
+          <div key={restaurant.key} className="flex flex-col">
             <span>{restaurant.name}</span>
             <span>{restaurant.city}</span>
           </div>

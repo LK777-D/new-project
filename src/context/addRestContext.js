@@ -1,6 +1,7 @@
 "use client";
 import { useState, createContext, useContext } from "react";
 import { useAuthCtx } from "./AuthContext";
+import fetchRestaurants from "../fetches/restaurants/fetchRests";
 const addRestCtx = createContext();
 
 const AddRestCtxProvider = ({ children }) => {
@@ -53,6 +54,7 @@ const AddRestCtxProvider = ({ children }) => {
       }
       const result = await response.json();
       setRestDetails(result);
+      fetchRestaurants((page = 0));
       console.log(result);
       const newToken = response.headers.get("X-Access-Token");
       console.log(newToken);

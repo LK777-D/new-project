@@ -29,14 +29,16 @@ const Navbar = () => {
         onClick1={() => setModalIsopen(false)}
       />
       <nav className="flex  items-center justify-around  h-[8vh] lg:h-[10vh] ">
-        <span className="text-xl font-bold">LOGOO</span>
+        <Link href={"/"} className="text-xl font-bold">
+          LOGOO
+        </Link>
         <ul className="flex gap-2 font-semibold ">
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
             <Link href={"/hotels"}>Hotels</Link>
           </li>
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
             {" "}
-            <Link href={"/restaurants"}>Restaurants</Link>
+            <Link href={"/restaurants?page=0"}>Restaurants</Link>
           </li>
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
             {" "}

@@ -1,4 +1,4 @@
-import AddRestForm from "../../components/addObject/restaurant/addRestForm";
+import AddRestForm from "../../components/objects/restaurant/addRestForm";
 const addRestaurant = () => {
   return (
     <main>

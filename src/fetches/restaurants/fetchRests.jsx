@@ -1,6 +1,5 @@
-const fetchRestaurants = async () => {
+const fetchRestaurants = async (page = 0) => {
   const limit = 15;
-  const page = 0;
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -8,6 +7,7 @@ const fetchRestaurants = async () => {
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
+    cache: "no-store",
     redirect: "follow",
   };
 
@@ -22,7 +22,11 @@ const fetchRestaurants = async () => {
     }
 
     const result = await response.json();
-    return result;
+    const data = {
+      itemCount: result.itemCount,
+      restaurants: result.restaurants,
+    };
+    return data;
   } catch (error) {
     console.error("Error fetching restaurants:", error.message);
   }

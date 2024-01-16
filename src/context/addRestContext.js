@@ -54,7 +54,7 @@ const AddRestCtxProvider = ({ children }) => {
       }
       const result = await response.json();
       setRestDetails(result);
-      fetchRestaurants((page = 0));
+
       console.log(result);
       const newToken = response.headers.get("X-Access-Token");
       console.log(newToken);

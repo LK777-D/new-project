@@ -1,8 +1,9 @@
 import Image from "next/image";
 import restImg from "../../assets/restaurant.jpg";
-const PlaceCard = ({ name, city, addressLine1, addressLine2 }) => {
+import Link from "next/link";
+const PlaceCard = ({ name, city, addressLine1, addressLine2, id }) => {
   return (
-    <div className="w-[90%] max-w-[30rem]  ">
+    <Link href={`/restaurants/${id}`} className="w-[90%] max-w-[30rem]  ">
       <Image alt="rest" src={restImg} className="rounded-md" />
       <div>
         <div className="flex justify-around">
@@ -14,7 +15,7 @@ const PlaceCard = ({ name, city, addressLine1, addressLine2 }) => {
           <span>{addressLine2}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

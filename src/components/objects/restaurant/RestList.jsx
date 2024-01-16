@@ -21,6 +21,7 @@ const RestList = async ({ page }) => {
       <div className="flex flex-col items-center gap-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:p-3">
         {restaurants.map((restaurant) => (
           <PlaceCard
+            id={restaurant.id}
             key={restaurant.id}
             name={restaurant.name}
             city={restaurant.city}

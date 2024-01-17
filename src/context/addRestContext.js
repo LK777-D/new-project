@@ -55,9 +55,8 @@ const AddRestCtxProvider = ({ children }) => {
       const result = await response.json();
       setRestDetails(result);
 
-      console.log(result);
       const newToken = response.headers.get("X-Access-Token");
-      console.log(newToken);
+
       if (newToken) {
         localStorage.setItem("authToken", newToken);
       }

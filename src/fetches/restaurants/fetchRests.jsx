@@ -26,6 +26,7 @@ const fetchRestaurants = async (page = 0) => {
       itemCount: result.itemCount,
       restaurants: result.restaurants,
     };
+
     return data;
   } catch (error) {
     console.error("Error fetching restaurants:", error.message);
@@ -33,3 +34,23 @@ const fetchRestaurants = async (page = 0) => {
 };
 
 export default fetchRestaurants;
+
+export const fetchRestaurantById = async (restaurantId) => {
+  var requestOptions = {
+    method: "POST",
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(
+      `http://174.138.59.141:8080/api/v1/restaurant/get?id=${restaurantId}`,
+      requestOptions
+    );
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching restaurant details:", error);
+    throw error;
+  }
+};

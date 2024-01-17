@@ -6,11 +6,6 @@ const RestList = async ({ page }) => {
   const restaurants = restaurantsData.restaurants;
   const totalRestaurants = restaurantsData.itemCount;
   const totalPages = Math.ceil(totalRestaurants / 15);
-  console.log("totalpagesunder");
-  console.log(restaurantsData);
-
-  console.log(totalPages);
-  console.log(totalRestaurants);
   const prevPage = page > 0 ? page - 1 : 1;
   const nextPage = page + 1;
   const pageNumbers = Array.from({ length: 3 }, (_, i) => page + i).filter(
@@ -21,11 +16,14 @@ const RestList = async ({ page }) => {
       <div className="flex flex-col items-center gap-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:p-3">
         {restaurants.map((restaurant) => (
           <PlaceCard
+            id={restaurant.id}
             key={restaurant.id}
             name={restaurant.name}
             city={restaurant.city}
             addressLine1={restaurant.addressLine1}
             addressLine2={restaurant.addressLine2}
+            images={restaurant.images}
+            imageValues={restaurant.imageValues}
           />
         ))}
       </div>

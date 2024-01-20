@@ -3,21 +3,16 @@ import { useAuthCtx } from "../../context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import img from "../../assets/user.png";
+import userLogo from "../../assets/user-setting.svg";
 import AuthForm from "../authentication/AuthForm";
 import ModalPopUp from "../modal/Modal";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
-  const {
-    logout,
-    authIsOpen,
-    setAuthIsopen,
-    token,
-    user,
-    openModal,
-    setModalIsopen,
-  } = useAuthCtx();
-
+  const { logout, authIsOpen, setAuthIsopen, user, setModalIsopen } =
+    useAuthCtx();
+  const [userMenuIsopen, setUserMenuIsOpen] = useState(false);
+  console.log(user);
   return (
     <>
       <ModalPopUp
@@ -28,9 +23,9 @@ const Navbar = () => {
         onClick2={logout}
         onClick1={() => setModalIsopen(false)}
       />
-      <nav className="flex  items-center justify-around  h-[8vh] lg:h-[10vh] ">
+      <nav className="flex relative  fontabril items-center justify-around  h-[8vh] lg:h-[10vh] ">
         <Link href={"/"} className="text-xl font-bold">
-          LOGOO
+          LOGO
         </Link>
         <ul className="flex gap-2 font-semibold ">
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
@@ -40,12 +35,24 @@ const Navbar = () => {
             {" "}
             <Link href={"/restaurants?page=0"}>Restaurants</Link>
           </li>
-          <li className="transition hover:text-gray-500 duration-150 ease-linear">
-            {" "}
-            <Link href={"/addrestaurant"}>add</Link>
-          </li>
         </ul>
-        <div>
+
+        <div className="flex items-center gap-3">
+          <span className="">
+            {user && (
+              <button
+                className="mt-2"
+                onClick={() => setUserMenuIsOpen((prev) => !prev)}
+              >
+                <Image alt="user" width={40} height={40} src={userLogo} />
+              </button>
+            )}
+            {userMenuIsopen && (
+              <span className="absolute top-[8.5vh] translate-x-[-61%] lg:top-[10.5vh]  z-50">
+                <UserMenu user={user} />{" "}
+              </span>
+            )}
+          </span>
           {!user ? (
             <button
               onClick={() => setAuthIsopen((prev) => !prev)}
@@ -61,7 +68,6 @@ const Navbar = () => {
               Logout
             </button>
           )}
-          <span>{user && user?.userEmail}</span>
         </div>
       </nav>
       <div>{authIsOpen && <AuthForm />}</div>

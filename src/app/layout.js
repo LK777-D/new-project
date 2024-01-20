@@ -3,7 +3,14 @@ import "./globals.css";
 import Navbar from "../components/Navigation/Navbar";
 import AuthenticationCtxProvider from "../context/AuthContext";
 import AddRestCtxProvider from "../context/addRestContext";
-import { Play, Abril_Fatface, Bree_Serif } from "next/font/google";
+import {
+  Play,
+  Abril_Fatface,
+  Bree_Serif,
+  Exo_2,
+  Acme,
+  Didact_Gothic,
+} from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 const bree = Bree_Serif({
@@ -11,12 +18,22 @@ const bree = Bree_Serif({
   weight: "400",
   variable: "--font-bree",
 });
+const raleway = Didact_Gothic({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rale",
+});
+const lemon = Acme({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-lemon",
+});
 const abril = Abril_Fatface({
   weight: ["400"],
   style: ["normal"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-play",
+  variable: "--font-abril",
 });
 export const metadata = {
   title: "Create Next App",
@@ -25,8 +42,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${bree.className} ${abril.variable}`}>
+    <html
+      lang="en"
+      className={`${abril.variable} ${lemon.variable} ${raleway.variable} ${bree.variable} `}
+    >
+      <body className={inter.className}>
         <AuthenticationCtxProvider>
           <AddRestCtxProvider>
             <Navbar />

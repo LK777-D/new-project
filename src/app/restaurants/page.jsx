@@ -1,5 +1,4 @@
 import RestList from "../../components/objects/restaurant/RestList";
-
 import PlaceTypeCard from "../../components/placeType/PlaceTypeCard";
 import PlaceTypeBox from "../../components/placeType/PlaceTypeBox";
 // type images

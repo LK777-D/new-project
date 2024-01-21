@@ -1,6 +1,5 @@
 import RestList from "../../components/objects/restaurant/RestList";
-import fetchRestaurants from "../../fetches/restaurants/fetchRests";
-import FilterRestaurant from "../../components/filter/filterRestaurant";
+
 import PlaceTypeCard from "../../components/placeType/PlaceTypeCard";
 import PlaceTypeBox from "../../components/placeType/PlaceTypeBox";
 // type images

@@ -12,7 +12,7 @@ const PlaceTypeBox = ({
   img5,
 }) => {
   return (
-    <section className="flex flex-col justify-center items-center gap-3 ">
+    <section className="flex fontabril flex-col justify-center items-center gap-3 ">
       <h1 className="text-2xl">Browse By Foodd</h1>
       <div className="flex flex-row items-center md:justify-center   gap-3 px-2 max-w-[37rem] overflow-y-scroll md:overflow-visible  ">
         <PlaceTypeCard text={text1} img={img1} />

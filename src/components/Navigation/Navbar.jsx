@@ -12,7 +12,7 @@ const Navbar = () => {
   const { logout, authIsOpen, setAuthIsopen, user, setModalIsopen } =
     useAuthCtx();
   const [userMenuIsopen, setUserMenuIsOpen] = useState(false);
-  console.log(user);
+
   return (
     <>
       <ModalPopUp

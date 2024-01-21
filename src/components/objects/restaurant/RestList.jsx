@@ -30,8 +30,9 @@ const RestList = async ({ page }) => {
               addressLine2={restaurant.addressLine2}
               images={restaurant.images}
               imageValues={restaurant.imageValues}
+              description={restaurant.description}
             />
-            {console.log(restaurant)} {/* Log restaurant details */}
+            {console.log(restaurant)}
           </div>
         ))}
       </div>

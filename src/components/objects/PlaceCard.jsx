@@ -11,6 +11,7 @@ const PlaceCard = ({
   addressLine1,
   addressLine2,
   id,
+  description,
 }) => {
   const capitalizeFirstLetter = (str) =>
     str.charAt(0).toUpperCase() + str.slice(1);
@@ -60,6 +61,10 @@ const PlaceCard = ({
               <span>{addressLine2}</span>
             </div>
           </div>
+          <div className="h-[1px] my-3 w-[90%] mx-auto bg-gray-600/40  "></div>
+          <span className="font-extralight text-sm">
+            {description.slice(0, 50)}...
+          </span>
         </div>
       </div>
     </Link>

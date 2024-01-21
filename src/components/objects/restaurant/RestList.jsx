@@ -12,26 +12,36 @@ const RestList = async ({ page }) => {
     (num) => num >= 0 && num < totalPages
   );
   return (
-    <main>
-      <div className="flex flex-col items-center gap-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:p-3">
+    <section>
+      <div className="flex flex-col gap-2 my-5 ">
+        <h1 className="text-xl">Top Restaurants in Georgia</h1>
+        <span>{restaurants.length} results </span>
+      </div>
+
+      <div className="flex flex-col items-center gap-3 md:items-start ">
         {restaurants.map((restaurant) => (
-          <PlaceCard
-            id={restaurant.id}
-            key={restaurant.id}
-            name={restaurant.name}
-            city={restaurant.city}
-            addressLine1={restaurant.addressLine1}
-            addressLine2={restaurant.addressLine2}
-            images={restaurant.images}
-            imageValues={restaurant.imageValues}
-          />
+          <div key={restaurant.id}>
+            <PlaceCard
+              id={restaurant.id}
+              key={restaurant.id}
+              name={restaurant.name}
+              city={restaurant.city}
+              addressLine1={restaurant.addressLine1}
+              addressLine2={restaurant.addressLine2}
+              images={restaurant.images}
+              imageValues={restaurant.imageValues}
+              description={restaurant.description}
+            />
+          </div>
         ))}
       </div>
       <div className="flex gap-2 justify-center py-2">
         {page === 0 ? (
-          <div className="text-gray-500">previous</div>
+          <div className="text-gray-500">Previous</div>
         ) : (
-          <Link href={`?page=${prevPage}`}>Previouss</Link>
+          <Link className="underline" href={`?page=${prevPage}`}>
+            Previouss
+          </Link>
         )}
         {pageNumbers.map((num) => (
           <Link key={num} href={`?page=${num}`}>
@@ -39,12 +49,14 @@ const RestList = async ({ page }) => {
           </Link>
         ))}
         {page === totalPages - 1 ? (
-          <div className="text-gray-500">next</div>
+          <div className="text-gray-500">Next</div>
         ) : (
-          <Link href={`?page=${nextPage}`}>nextpage</Link>
+          <Link className="underline" href={`?page=${nextPage}`}>
+            Next
+          </Link>
         )}
       </div>
-    </main>
+    </section>
   );
 };
 

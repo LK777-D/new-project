@@ -12,16 +12,12 @@ const SingleRestaurant = async ({ params }) => {
       <div>
         <div className="w-[90%] max-w-[30rem]  ">
           <div className="flex flex-col md:flex-row gap-3">
-            {images.map((imageId, index) => (
-              <Image
-                key={index}
-                src={imageValues[index]}
-                alt="image"
-                height={0}
-                width={0}
-                style={{ width: "120px", height: "auto" }}
-              />
-            ))}
+            <Image
+              src={imageValues[0]}
+              alt={`image-$`}
+              width={120}
+              height={80}
+            />
           </div>
 
           <div>

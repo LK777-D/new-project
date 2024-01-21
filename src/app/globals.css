@@ -6,9 +6,14 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--font--abril);
+  font-family: var(--font-bree);
 }
-
+.fontlight {
+  font-family: var(--font-rale);
+}
+.fontlemon {
+  font-family: var(--font-lemon);
+}
 .sliderimg1 {
   background-image: url("../assets/hotel2.jpg");
   background-position: center;
@@ -25,5 +30,5 @@ body {
   display: none;
 }
 .fontabril {
-  font-family: var(--font--abril);
+  font-family: var(--font-abril);
 }

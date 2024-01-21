@@ -12,6 +12,7 @@ const AddRestCtxProvider = ({ children }) => {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
   const [restDeatils, setRestDetails] = useState(null);
+  const [firstFormSubmitted, setFirstFormSubmitted] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
   const { user } = useAuthCtx();
   const userEmail = user?.userEmail;
@@ -49,12 +50,13 @@ const AddRestCtxProvider = ({ children }) => {
         "http://174.138.59.141:8080/api/v2/restaurant/create",
         requestOptions
       );
+      setFirstFormSubmitted(true);
       if (!response.ok) {
         throw new Error("Failed to create restaurant");
       }
       const result = await response.json();
       setRestDetails(result);
-
+      console.log(result);
       const newToken = response.headers.get("X-Access-Token");
 
       if (newToken) {
@@ -136,6 +138,7 @@ const AddRestCtxProvider = ({ children }) => {
     addRestaurantInfo,
     uploadRestImages,
     setImages,
+    firstFormSubmitted,
   };
 
   return <addRestCtx.Provider value={ctxValue}>{children}</addRestCtx.Provider>;

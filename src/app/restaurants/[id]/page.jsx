@@ -18,6 +18,7 @@ const SingleRestaurant = async ({ params }) => {
         city={selectedRestaurant.city}
         addressLine1={selectedRestaurant.addressLine1}
         addressLine2={selectedRestaurant.addressLine2}
+        imageValues={imageValues}
       />
       <div className="md:grid md:grid-cols-3 md:gap-5  md:px-[1.5rem] ">
         <InfoBox description={selectedRestaurant.description} />

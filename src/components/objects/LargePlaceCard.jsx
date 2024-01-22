@@ -4,7 +4,13 @@ import testimg3 from "../../assets/pub.jpg";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
 import clock from "../../assets/clock.svg";
-const LargePlaceCard = ({ city, name, addressLine1, addressLine2 }) => {
+const LargePlaceCard = ({
+  imageValues,
+  city,
+  name,
+  addressLine1,
+  addressLine2,
+}) => {
   return (
     <div className="flex flex-col fontlemon   ">
       <div className="bg-white py-[1.5rem] pl-[2rem] md:pl-0">
@@ -42,11 +48,11 @@ const LargePlaceCard = ({ city, name, addressLine1, addressLine2 }) => {
         <Image
           className="object-cover aspect-[5/6] md:aspect-[17/9] md:h-[20rem]   "
           alt="img"
-          src={testimg1}
+          src={`${imageValues[0]}`}
           width={1000}
           height={1000}
         />
-        <Image
+        {/* <Image
           className="object-cover aspect-[5/6] md:aspect-[15/9]  md:h-[20rem] "
           alt="img"
           src={testimg2}
@@ -59,7 +65,7 @@ const LargePlaceCard = ({ city, name, addressLine1, addressLine2 }) => {
           src={testimg3}
           width={1000}
           height={1000}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ const PlaceCard = ({
             className="aspect-[15/6] rounded-l-sm object-cover md:aspect-square  md:max-h-[12rem] md:max-w-[11rem]   "
           />
         </div>
-        <div className="bg-white flex flex-col   font-normal gap-1 pl-3">
+        <div className="bg-white flex flex-col   font-normal gap-1 pl-3 w-full">
           <span className=" fontlemon text-xl">
             {capitalizeFirstLetter(name)}
           </span>
@@ -61,7 +61,7 @@ const PlaceCard = ({
               <span>{addressLine2}</span>
             </div>
           </div>
-          <div className="h-[1px] my-3 w-[90%] mx-auto bg-gray-600/40  "></div>
+          <div className="h-[1px] my-3 w-[95%] mx-auto bg-gray-600/40  "></div>
           <span className="font-extralight text-sm">
             {description.slice(0, 50)}...
           </span>

@@ -89,10 +89,10 @@ const AddRestCtxProvider = ({ children }) => {
     });
 
     const base64Images = await Promise.all(imagePromises);
-
+    const tokken = localStorage.getItem("authToken");
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Authorization", `Bearer ${tokken}`);
 
     const raw = JSON.stringify({
       images: base64Images,

@@ -1,6 +1,7 @@
 import testimg1 from "../../assets/restaurant.jpg";
 import testimg2 from "../../assets/restaurant2.webp";
 import testimg3 from "../../assets/pub.jpg";
+import { useMemo } from "react";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
 import clock from "../../assets/clock.svg";
@@ -48,7 +49,7 @@ const LargePlaceCard = ({
         <Image
           className="object-cover aspect-[5/6] md:aspect-[17/9] md:h-[20rem]   "
           alt="img"
-          src={`${imageValues[0]}`}
+          src={imageValues[0]}
           width={1000}
           height={1000}
         />

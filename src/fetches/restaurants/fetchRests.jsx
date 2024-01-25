@@ -22,6 +22,9 @@ const fetchRestaurants = async (page = 0) => {
     }
 
     const result = await response.json();
+
+    console.log(result);
+    console.log(result.imageValues);
     const data = {
       itemCount: result.itemCount,
       restaurants: result.restaurants,

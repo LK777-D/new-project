@@ -13,7 +13,14 @@ const AddRestCtxProvider = ({ children }) => {
   const [images, setImages] = useState([]);
   const [restDeatils, setRestDetails] = useState(null);
   const [firstFormSubmitted, setFirstFormSubmitted] = useState(false);
-  const [restaurants, setRestaurants] = useState([]);
+
+  // rating state
+  const [rating, setRating] = useState(0);
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const [restaurantId, setRestaurantId] = useState(null);
+  const [submitRating, setSubmitRating] = useState(false);
+
   const { user } = useAuthCtx();
   const userEmail = user?.userEmail;
   const userId = user?.userId;
@@ -127,7 +134,45 @@ const AddRestCtxProvider = ({ children }) => {
     }
   };
 
-  // fetch rests
+  // rate restaurant
+  const rateRestaurant = async () => {
+    const tokken = localStorage.getItem("authToken");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${tokken}`);
+
+    const raw = JSON.stringify({
+      userId: userId,
+      objectId: restaurantId,
+      score: currentValue,
+    });
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "http://174.138.59.141:8080/api/v2/rating/rate",
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error("Failed to rate");
+      }
+      setSubmitRating(false);
+      const result = await response.json();
+      console.log(result);
+      setSubmitRating(false);
+      const newToken = response.headers.get("X-Access-Token");
+      if (newToken) {
+        localStorage.setItem("authToken", newToken);
+      }
+    } catch (error) {
+      console.error("Error uploading images:", error.message);
+    }
+  };
 
   const ctxValue = {
     setAddressLine1,
@@ -139,6 +184,16 @@ const AddRestCtxProvider = ({ children }) => {
     uploadRestImages,
     setImages,
     firstFormSubmitted,
+    setRating,
+    rating,
+    setCurrentValue,
+    currentValue,
+    setHoverValue,
+    hoverValue,
+    setRestaurantId,
+    setSubmitRating,
+    submitRating,
+    rateRestaurant,
   };
 
   return <addRestCtx.Provider value={ctxValue}>{children}</addRestCtx.Provider>;

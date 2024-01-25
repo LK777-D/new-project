@@ -11,6 +11,7 @@ const RestList = async ({ page }) => {
   const pageNumbers = Array.from({ length: 3 }, (_, i) => page + i).filter(
     (num) => num >= 0 && num < totalPages
   );
+  console.log();
   return (
     <section>
       <div className="flex flex-col gap-2 my-5 ">

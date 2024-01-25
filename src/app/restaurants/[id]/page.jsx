@@ -9,16 +9,20 @@ import LargePlaceCard from "../../../components/objects/LargePlaceCard";
 const SingleRestaurant = async ({ params }) => {
   const id = params.id;
   const selectedRestaurant = await fetchRestaurantById(id);
+  const restId = selectedRestaurant.id;
   const images = selectedRestaurant.images;
   const imageValues = selectedRestaurant.imageValues;
+  console.log(selectedRestaurant);
   return (
     <main className=" bg-gray-200 border border-t">
       <LargePlaceCard
+        selectedRestaurant={selectedRestaurant}
         name={selectedRestaurant.name}
         city={selectedRestaurant.city}
         addressLine1={selectedRestaurant.addressLine1}
         addressLine2={selectedRestaurant.addressLine2}
         imageValues={imageValues}
+        restId={restId}
       />
       <div className="md:grid md:grid-cols-3 md:gap-5  md:px-[1.5rem] ">
         <InfoBox description={selectedRestaurant.description} />

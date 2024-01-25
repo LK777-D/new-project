@@ -15,7 +15,14 @@ const PlaceCard = ({
 }) => {
   const capitalizeFirstLetter = (str) =>
     str.charAt(0).toUpperCase() + str.slice(1);
+  console.log(imageValues, name);
 
+  const base64String = btoa(
+    String.fromCharCode.apply(null, new Uint8Array(imageValues[0]))
+  );
+
+  // Use the base64 string in your image source
+  const imageSource = `data:image/jpeg;base64,${base64String}`;
   return (
     <Link
       href={`/restaurants/${id}`}
@@ -24,7 +31,7 @@ const PlaceCard = ({
       <div className="flex flex-col border border-gray-300  shadow-xl rounded-sm gap-2 w-full h-full md:min-w-[47rem] bg-white pb-1 md:pb-0 md:flex-row ">
         <div>
           <Image
-            src={img1}
+            src={imageValues[0]}
             alt={`image-`}
             width={600}
             height={400}
@@ -38,7 +45,13 @@ const PlaceCard = ({
           <div className="font-extralight text-#333333 text-sm ">
             <div className="flex fontlight gap-3 ">
               <div className="flex">
-                <Image alt="star" src={star} width={20} height={20} />
+                <Image
+                  alt="star"
+                  src={star}
+                  width={20}
+                  height={20}
+                  style={{ fill: "green" }}
+                />
                 <Image alt="star" src={star} width={20} height={20} />
                 <Image alt="star" src={star} width={20} height={20} />
                 <Image alt="star" src={star} width={20} height={20} />

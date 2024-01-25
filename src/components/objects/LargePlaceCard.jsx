@@ -5,8 +5,9 @@ import testimg3 from "../../assets/pub.jpg";
 import { useMemo } from "react";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
+import Rate from "../../components/rating/Rate";
 import clock from "../../assets/clock.svg";
-import Rate from "../rating/rate";
+
 const LargePlaceCard = ({
   imageValues,
   city,

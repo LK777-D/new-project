@@ -1,6 +1,7 @@
 "use client";
 import { FaStar } from "react-icons/fa";
 import { useAddRestCtx } from "../../context/addRestContext";
+import { Rate as Rating } from "antd";
 const Rate = ({ restId }) => {
   const {
     setRating,
@@ -16,35 +17,21 @@ const Rate = ({ restId }) => {
   } = useAddRestCtx();
   const stars = Array(5).fill(0);
 
-  const handleStarClick = (val) => {
-    setCurrentValue(val + ".00");
-    setRestaurantId(restId);
+  const handleRate = (value) => {
+    setCurrentValue(value.toString());
     setSubmitRating(true);
-  };
-  console.log(currentValue);
-  console.log(typeof currentValue);
-  console.log(restId);
-  const handleMouseOverStar = (val) => {
-    setHoverValue(val);
-  };
-  const handleMouseLeave = () => {
-    setHoverValue(undefined);
+    setRestaurantId(restId);
   };
   return (
     <div className="flex gap-1">
-      {stars.map((_, index) => (
-        <FaStar
-          width={30}
-          key={index}
-          onClick={() => handleStarClick(index + 1)}
-          onMouseOver={() => handleMouseOverStar(parseFloat(index + 1))}
-          color={(hoverValue || currentValue) > index ? "orange" : "gray"}
-          onMouseLeave={handleMouseLeave}
-        />
-      ))}
-      {submitRating && (
-        <button onClick={rateRestaurant}>submit ratinggg</button>
-      )}
+      <Rating
+        allowHalf
+        allowClear={false}
+        value={currentValue}
+        tooltips={["Bad", "Normal", "Good", "Very Good", "Excellent"]}
+        onChange={(value) => handleRate(value)}
+      />
+      {submitRating && <button onClick={rateRestaurant}>submit rating</button>}
     </div>
   );
 };

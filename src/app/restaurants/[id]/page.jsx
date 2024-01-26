@@ -12,9 +12,12 @@ const SingleRestaurant = async ({ params }) => {
   const restId = selectedRestaurant.id;
   const images = selectedRestaurant.images;
   const imageValues = selectedRestaurant.imageValues;
+  const score = selectedRestaurant.score;
   console.log(selectedRestaurant);
   return (
     <main className=" bg-gray-200 border border-t">
+      {selectedRestaurant.score}
+
       <LargePlaceCard
         selectedRestaurant={selectedRestaurant}
         name={selectedRestaurant.name}
@@ -23,6 +26,7 @@ const SingleRestaurant = async ({ params }) => {
         addressLine2={selectedRestaurant.addressLine2}
         imageValues={imageValues}
         restId={restId}
+        score={score}
       />
       <div className="md:grid md:grid-cols-3 md:gap-5  md:px-[1.5rem] ">
         <InfoBox description={selectedRestaurant.description} />

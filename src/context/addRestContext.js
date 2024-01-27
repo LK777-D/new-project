@@ -2,6 +2,7 @@
 import { useState, createContext, useContext } from "react";
 import { useAuthCtx } from "./AuthContext";
 import fetchRestaurants from "../fetches/restaurants/fetchRests";
+import { useRouter } from "next/navigation";
 const addRestCtx = createContext();
 
 const AddRestCtxProvider = ({ children }) => {
@@ -27,6 +28,7 @@ const AddRestCtxProvider = ({ children }) => {
   const token = user?.token;
   const restId = restDeatils?.id;
 
+  const router = useRouter();
   // create rest
   const addRestaurantInfo = async (e) => {
     e.preventDefault();
@@ -175,7 +177,7 @@ const AddRestCtxProvider = ({ children }) => {
   };
 
   // delete
-  const deleteRestaurant = async () => {
+  const deleteRestaurant = async (restId, creatorId) => {
     const tokken = localStorage.getItem("authToken");
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${tokken} `);
@@ -187,7 +189,7 @@ const AddRestCtxProvider = ({ children }) => {
     };
     try {
       const response = await fetch(
-        `http://174.138.59.141:8080/api/v2/restaurant/delete?userId=creatorId&id=restaurantId`,
+        `http://174.138.59.141:8080/api/v2/restaurant/delete?userId=${creatorId}&id=${restId}`,
         requestOptions
       );
       if (!response.ok) {
@@ -199,6 +201,7 @@ const AddRestCtxProvider = ({ children }) => {
       if (newToken) {
         localStorage.setItem("authToken", newToken);
       }
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -224,6 +227,7 @@ const AddRestCtxProvider = ({ children }) => {
     setSubmitRating,
     submitRating,
     rateRestaurant,
+    deleteRestaurant,
   };
 
   return <addRestCtx.Provider value={ctxValue}>{children}</addRestCtx.Provider>;

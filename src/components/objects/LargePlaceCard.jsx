@@ -2,11 +2,14 @@
 import testimg1 from "../../assets/restaurant.jpg";
 import testimg2 from "../../assets/restaurant2.webp";
 import testimg3 from "../../assets/pub.jpg";
-import { useMemo } from "react";
+import { useState } from "react";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
+import ImageGallery from "../../components/gallery/ImageGallery";
 import Rate from "../../components/rating/Rate";
 import clock from "../../assets/clock.svg";
+import { useAddRestCtx } from "../../context/addRestContext";
+import { useAuthCtx } from "../../context/AuthContext";
 
 const LargePlaceCard = ({
   imageValues,
@@ -17,9 +20,18 @@ const LargePlaceCard = ({
   restId,
   selectedRestaurant,
   restaurantId,
+  creatorId,
   score,
 }) => {
-  console.log("score", score);
+  const [imageGalleryIsOpen, setImageGalleryIsOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+    setImageGalleryIsOpen(true);
+  };
+  const { deleteRestaurant } = useAddRestCtx();
+  const { user } = useAuthCtx();
+  const userId = user?.userId;
   return (
     <div className="flex flex-col fontlemon   ">
       <div className="bg-white py-[1.5rem] pl-[2rem] md:pl-0">
@@ -46,6 +58,11 @@ const LargePlaceCard = ({
               <span className="text-gray-400">{addressLine2}</span>
             </div>
           </div>
+          {userId === creatorId && (
+            <button onClick={() => deleteRestaurant(restId, creatorId)}>
+              Delete Restaurant
+            </button>
+          )}
         </div>
       </div>
 
@@ -58,9 +75,19 @@ const LargePlaceCard = ({
             src={imageValues[index]}
             width={1000}
             height={1000}
+            onClick={() => handleImageClick(index)}
           />
         ))}
       </div>
+      {imageGalleryIsOpen && (
+        <div>
+          <ImageGallery
+            selectedImageIndex={selectedImageIndex}
+            imageValues={imageValues}
+            setImageGalleryIsOpen={setImageGalleryIsOpen}
+          />
+        </div>
+      )}
     </div>
   );
 };

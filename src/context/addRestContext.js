@@ -137,7 +137,7 @@ const AddRestCtxProvider = ({ children }) => {
   // rate restaurant
   const rateRestaurant = async () => {
     const tokken = localStorage.getItem("authToken");
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${tokken}`);
 
@@ -171,6 +171,36 @@ const AddRestCtxProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error uploading images:", error.message);
+    }
+  };
+
+  // delete
+  const deleteRestaurant = async () => {
+    const tokken = localStorage.getItem("authToken");
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${tokken} `);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+    try {
+      const response = await fetch(
+        `http://174.138.59.141:8080/api/v2/restaurant/delete?userId=creatorId&id=restaurantId`,
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error("Failed to rate");
+      }
+      const result = await response.json();
+      console.log(result);
+      const newToken = response.headers.get("X-Access-Token");
+      if (newToken) {
+        localStorage.setItem("authToken", newToken);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

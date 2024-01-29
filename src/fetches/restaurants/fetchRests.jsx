@@ -39,7 +39,7 @@ const fetchRestaurants = async (page = 0) => {
 export default fetchRestaurants;
 
 export const fetchRestaurantById = async (restaurantId) => {
-  var requestOptions = {
+  const requestOptions = {
     method: "POST",
     redirect: "follow",
   };
@@ -55,5 +55,23 @@ export const fetchRestaurantById = async (restaurantId) => {
   } catch (error) {
     console.error("Error fetching restaurant details:", error);
     throw error;
+  }
+};
+
+// reviews
+export const fetchReviews = async (restId) => {
+  const requestOptions = {
+    method: "POST",
+    redirect: "follow",
+  };
+  try {
+    const response = await fetch(
+      `http://174.138.59.141:8080/api/v1/comment/find?id=${restId}`,
+      requestOptions
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
   }
 };

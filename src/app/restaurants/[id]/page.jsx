@@ -5,7 +5,7 @@ import LocationBox from "../../../components/objects/LocationBox";
 import LargePlaceCard from "../../../components/objects/LargePlaceCard";
 import ReviewList from "../../../components/review/ReviewList";
 import { fetchReviews } from "../../../fetches/restaurants/fetchRests";
-import Review from "../../../components/review/review";
+
 const SingleRestaurant = async ({ params }) => {
   const id = params.id;
   const selectedRestaurant = await fetchRestaurantById(id);

@@ -1,4 +1,4 @@
-import Review from "../../../../components/review/review";
+import Review from "../../../../components/review/Review";
 import { fetchRestaurantById } from "../../../../fetches/restaurants/fetchRests";
 const reviewRestaurant = async ({ params }) => {
   const restaurantId = params.id;

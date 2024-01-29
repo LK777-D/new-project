@@ -1,6 +1,7 @@
+import Link from "next/link";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
-const InfoBox = ({ description }) => {
+const InfoBox = ({ description, restId }) => {
   return (
     <div className="bg-white fontlemon  my-5 px-[2rem] py-3  ">
       <h1 className="text-xl font-extrabold">Ratings and Description</h1>
@@ -18,7 +19,14 @@ const InfoBox = ({ description }) => {
       <div className="h-[2px] w-[95%] mx-auto bg-gray-200 my-[1rem] mr-[2rem]  "></div>
       <p>{description}</p>
       <button className="w-full my-4 transition hover:bg-black/70 duration-150 ease-in  text-white fontlemon rounded-sm p-1 bg-black">
-        Write a Review
+        <Link
+          href={{
+            pathname: `/restaurants/${restId}/review`,
+            restId: "hello",
+          }}
+        >
+          Write a Review
+        </Link>
       </button>
     </div>
   );

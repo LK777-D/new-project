@@ -28,6 +28,10 @@ const AddRestCtxProvider = ({ children }) => {
   const token = user?.token;
   const restId = restDeatils?.id;
 
+  // review
+  const [review, setReview] = useState("");
+  const [reviewType, setReviewType] = useState("GLOBAL");
+
   const router = useRouter();
   // create rest
   const addRestaurantInfo = async (e) => {
@@ -180,7 +184,7 @@ const AddRestCtxProvider = ({ children }) => {
   const deleteRestaurant = async (restId, creatorId) => {
     const tokken = localStorage.getItem("authToken");
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${tokken} `);
+    myHeaders.append("Authorization", `Bearer ${tokken}`);
 
     var requestOptions = {
       method: "POST",
@@ -206,7 +210,42 @@ const AddRestCtxProvider = ({ children }) => {
       console.error(error);
     }
   };
-
+  const addReview = async (restId) => {
+    const tokken = localStorage.getItem("authToken");
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${tokken} `);
+    const raw = JSON.stringify({
+      objectId: restId,
+      userId: userId,
+      content: review,
+      type: reviewType,
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    try {
+      const response = await fetch(
+        `http://174.138.59.141:8080/api/v2/comment/create`,
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error("Failed to create review");
+      }
+      const result = await response.json();
+      console.log(result);
+      const newToken = response.headers.get("X-Access-Token");
+      if (newToken) {
+        localStorage.setItem("authToken", newToken);
+      }
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const ctxValue = {
     setAddressLine1,
     setAddressLine2,
@@ -228,6 +267,11 @@ const AddRestCtxProvider = ({ children }) => {
     submitRating,
     rateRestaurant,
     deleteRestaurant,
+    review,
+    setReview,
+    reviewType,
+    setReviewType,
+    addReview,
   };
 
   return <addRestCtx.Provider value={ctxValue}>{children}</addRestCtx.Provider>;

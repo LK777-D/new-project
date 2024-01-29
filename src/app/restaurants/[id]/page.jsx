@@ -15,6 +15,7 @@ const SingleRestaurant = async ({ params }) => {
   const creatorId = selectedRestaurant.createdBy;
 
   const reviews = await fetchReviews(restId);
+  console.log(selectedRestaurant);
   return (
     <main className=" bg-gray-200 border border-t">
       <LargePlaceCard

@@ -62,6 +62,7 @@ export const fetchRestaurantById = async (restaurantId) => {
 export const fetchReviews = async (restId) => {
   const requestOptions = {
     method: "POST",
+    cache: "no-store",
     redirect: "follow",
   };
   try {

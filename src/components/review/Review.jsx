@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import testimg from "../../assets/restaurant.jpg";
-import ReviewForm from "./reviewForm";
+import ReviewForm from "../../components/review/ReviewForm";
 import { useState } from "react";
 import { useAddRestCtx } from "../../context/addRestContext";
 const Review = ({ selectedRestaurant }) => {

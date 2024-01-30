@@ -1,23 +1,37 @@
-import RestList from "../../components/objects/restaurant/RestList";
-import PlaceTypeCard from "../../components/placeType/PlaceTypeCard";
+"use client";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import PlaceTypeBox from "../../components/placeType/PlaceTypeBox";
+
 // type images
 import georgian from "../../assets/georgian.webp";
 import asian from "../../assets/asian.jpg";
 import italian from "../../assets/italian.jpeg";
 import pub from "../../assets/pub.jpg";
 import cafe from "../../assets/cafe.jpg";
+
+const DynamicRestList = dynamic(
+  () => import("../../components/objects/restaurant/RestList"),
+  {
+    loading: () => <p className="fontlemon">Loading Restaurants...</p>,
+    ssr: false,
+  }
+);
+
 const Restaurants = ({ searchParams }) => {
+  const [shouldRenderRestList, setShouldRenderRestList] = useState(false);
   let page = parseInt(searchParams.page, 10);
+
+  useEffect(() => {
+    // Delay the rendering of RestList until after the initial page load
+    setShouldRenderRestList(true);
+  }, []);
 
   console.log(searchParams.page);
 
   return (
     <main className="bg-gray-200 py-10">
-      <div
-        className="flex flex-col gap-[5rem] items-center
-      "
-      >
+      <div className="flex flex-col gap-[5rem] items-center">
         <div>
           <PlaceTypeBox
             text1="Georgian"
@@ -32,7 +46,7 @@ const Restaurants = ({ searchParams }) => {
             img5={asian}
           />
         </div>
-        <RestList page={page} />
+        {shouldRenderRestList && <DynamicRestList page={page} />}
       </div>
     </main>
   );

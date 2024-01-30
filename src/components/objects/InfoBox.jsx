@@ -1,19 +1,18 @@
+"use client";
 import Link from "next/link";
 import rating from "../../assets/star (1).svg";
 import Image from "next/image";
-const InfoBox = ({ description, restId }) => {
+import { Rate } from "antd";
+const InfoBox = ({ description, restId, score }) => {
+  const objScore = parseFloat(score).toFixed(1);
+  console.log(typeof score);
   return (
     <div className="bg-white fontlemon  my-5 px-[2rem] py-3  ">
       <h1 className="text-xl font-extrabold">Ratings and Description</h1>
       <div className="py-[1rem] font-bold">
         <div className="flex mt-1">
-          <span className="mr-1">5.0</span>
-          <Image alt="star" src={rating} width={20} height={20} />
-          <Image alt="star" src={rating} width={20} height={20} />
-          <Image alt="star" src={rating} width={20} height={20} />
-          <Image alt="star" src={rating} width={20} height={20} />
-          <Image alt="star" src={rating} width={20} height={20} />
-          <span className="ml-1">0 reviews</span>
+          <span className="mr-1">{parseFloat(score).toFixed(1)}</span>
+          <Rate allowClear={false} allowHalf value={objScore} />
         </div>
       </div>
       <div className="h-[2px] w-[95%] mx-auto bg-gray-200 my-[1rem] mr-[2rem]  "></div>

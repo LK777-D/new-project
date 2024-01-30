@@ -135,6 +135,7 @@ const AddRestCtxProvider = ({ children }) => {
       if (newToken) {
         localStorage.setItem("authToken", newToken);
       }
+      router.push("/restaurants?page=0");
     } catch (error) {
       console.error("Error uploading images:", error.message);
     }
@@ -241,7 +242,7 @@ const AddRestCtxProvider = ({ children }) => {
       if (newToken) {
         localStorage.setItem("authToken", newToken);
       }
-      router.push("/");
+      router.push(`/restaurants/${restId}`);
     } catch (error) {
       console.error(error);
     }

@@ -29,7 +29,7 @@ const Navbar = () => {
         </Link>
         <ul className="flex gap-2 font-semibold ">
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
-            <Link href={"/hotels"}>Hotels</Link>
+            {/* <Link href={"/hotels"}>Hotels</Link> */}
           </li>
           <li className="transition hover:text-gray-500 duration-150 ease-linear">
             {" "}

@@ -15,6 +15,7 @@ const SingleRestaurant = async ({ params }) => {
   const creatorId = selectedRestaurant.createdBy;
 
   const reviews = await fetchReviews(restId);
+  console.log(selectedRestaurant);
   return (
     <main className=" bg-gray-200 border border-t">
       <LargePlaceCard
@@ -29,7 +30,11 @@ const SingleRestaurant = async ({ params }) => {
         creatorId={creatorId}
       />
       <div className="md:grid md:grid-cols-3 md:gap-5  md:px-[1.5rem] ">
-        <InfoBox restId={restId} description={selectedRestaurant.description} />
+        <InfoBox
+          restId={restId}
+          score={selectedRestaurant.score}
+          description={selectedRestaurant.description}
+        />
         <DetailsBox />
         <LocationBox
           addressLine1={selectedRestaurant.addressLine1}

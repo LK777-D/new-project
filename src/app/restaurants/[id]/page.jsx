@@ -5,7 +5,7 @@ import LocationBox from "../../../components/objects/LocationBox";
 import LargePlaceCard from "../../../components/objects/LargePlaceCard";
 import ReviewList from "../../../components/review/ReviewList";
 import { fetchReviews } from "../../../fetches/restaurants/fetchRests";
-
+import SingleObject from "../../../components/objects/SingleObject";
 const SingleRestaurant = async ({ params }) => {
   const id = params.id;
   const selectedRestaurant = await fetchRestaurantById(id);
@@ -17,33 +17,8 @@ const SingleRestaurant = async ({ params }) => {
   const reviews = await fetchReviews(restId);
   console.log(selectedRestaurant);
   return (
-    <main className=" bg-gray-200 border border-t">
-      <LargePlaceCard
-        selectedRestaurant={selectedRestaurant}
-        name={selectedRestaurant.name}
-        city={selectedRestaurant.city}
-        addressLine1={selectedRestaurant.addressLine1}
-        addressLine2={selectedRestaurant.addressLine2}
-        imageValues={imageValues}
-        restId={restId}
-        score={score}
-        creatorId={creatorId}
-      />
-      <div className="md:grid md:grid-cols-3 md:gap-5  md:px-[1.5rem] ">
-        <InfoBox
-          restId={restId}
-          score={selectedRestaurant.score}
-          description={selectedRestaurant.description}
-        />
-        <DetailsBox />
-        <LocationBox
-          addressLine1={selectedRestaurant.addressLine1}
-          addressLine2={selectedRestaurant.addressLine2}
-        />
-      </div>
-      <div className="md:px-[1.5rem]">
-        <ReviewList reviews={reviews} />
-      </div>
+    <main>
+      <SingleObject selectedRestaurant={selectedRestaurant} reviews={reviews} />
     </main>
   );
 };

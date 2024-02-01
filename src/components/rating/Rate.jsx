@@ -22,6 +22,7 @@ const Rate = ({ restId }) => {
     setSubmitRating(true);
     setRestaurantId(restId);
   };
+
   return (
     <div className="flex gap-1">
       <Rating
@@ -30,6 +31,7 @@ const Rate = ({ restId }) => {
         value={currentValue}
         tooltips={["Bad", "Normal", "Good", "Very Good", "Excellent"]}
         onChange={(value) => handleRate(value)}
+        className="border p-1 "
       />
       {submitRating && <button onClick={rateRestaurant}>submit rating</button>}
     </div>

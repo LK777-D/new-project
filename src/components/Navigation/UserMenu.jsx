@@ -10,12 +10,12 @@ const UserMenu = ({ user }) => {
       >
         Create Restaurant
       </Link>
-      <Link
+      {/* <Link
         className="w-[100%] rounded-sm px-2 transition hover:text-white hover:bg-gray-400 duration-150 ease-linear"
         href={"/addrestaurant"}
       >
         Create Hotel
-      </Link>
+      </Link> */}
     </div>
   );
 };

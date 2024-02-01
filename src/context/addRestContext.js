@@ -237,6 +237,7 @@ const AddRestCtxProvider = ({ children }) => {
         throw new Error("Failed to create review");
       }
       const result = await response.json();
+
       console.log(result);
       const newToken = response.headers.get("X-Access-Token");
       if (newToken) {

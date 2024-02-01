@@ -23,7 +23,7 @@ const ReviewList = ({ reviews }) => {
   return (
     <section className="fontlemon">
       <div className="flex flex-col gap-3 ">
-        {reviews.length > 0 &&
+        {reviews && reviews.length > 0 ? (
           reviews.slice(0, index).map((review, i) => (
             <div className="bg-white p-5 border max-w-[40rem]" key={i}>
               <div>
@@ -37,7 +37,10 @@ const ReviewList = ({ reviews }) => {
                 {review.content}
               </span>
             </div>
-          ))}
+          ))
+        ) : (
+          <span>No reviews</span>
+        )}
       </div>
       <button
         onClick={viewMoreHandler}

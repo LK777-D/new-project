@@ -23,7 +23,6 @@ const Restaurants = ({ searchParams }) => {
   let page = parseInt(searchParams.page, 10);
 
   useEffect(() => {
-    // Delay the rendering of RestList until after the initial page load
     setShouldRenderRestList(true);
   }, []);
 

@@ -50,7 +50,7 @@ const AuthenticationCtxProvider = ({ children }) => {
       localStorage.setItem("authToken", result.token);
 
       setAuthIsopen(false);
-      router.push("/");
+      window.location.reload();
 
       setReg(false);
     } catch (error) {

@@ -12,8 +12,18 @@ const AddRestForm = () => {
     setImages,
     uploadRestImages,
     firstFormSubmitted,
+    setRestTypes,
+    restaurantTypes,
+    restTypes,
   } = useAddRestCtx();
-
+  const handleCheckboxChange = (type) => {
+    if (restTypes.includes(type)) {
+      setRestTypes(restTypes.filter((t) => t !== type));
+    } else {
+      setRestTypes([...restTypes, type]);
+    }
+    console.log(restTypes);
+  };
   return (
     <section className="flex flex-col items-center gap-5">
       <form
@@ -83,6 +93,26 @@ const AddRestForm = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
+        </div>
+        <div className="mb-5">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            Restaurant Types
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {restaurantTypes.map((type) => (
+              <label key={type} className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  checked={restTypes.includes(type)}
+                  onChange={() => handleCheckboxChange(type)}
+                  className="form-checkbox h-5 w-5 text-blue-600 rounded-md"
+                />
+                <span className="ml-2 text-sm text-gray-900 dark:text-white">
+                  {type}
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
         <div className="mb-5">
           <label

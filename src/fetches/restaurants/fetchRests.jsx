@@ -1,19 +1,24 @@
-const fetchRestaurants = async (page = 0) => {
+const fetchRestaurants = async (page = 0, types) => {
   const limit = 15;
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-
+  const raw = JSON.stringify({
+    page: page,
+    limit: limit,
+    types: types,
+  });
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
+    body: raw,
     cache: "no-store",
     redirect: "follow",
   };
 
   try {
     const response = await fetch(
-      `http://174.138.59.141:8080/api/v1/restaurant/findAll?limit=${limit}&page=${page}`,
+      `http://174.138.59.141:8080/api/v1/restaurant/findAll`,
       requestOptions
     );
 

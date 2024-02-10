@@ -1,8 +1,8 @@
 import Link from "next/link";
 import fetchRestaurants from "../../../fetches/restaurants/fetchRests";
 import PlaceCard from "../../objects/PlaceCard";
-const RestList = async ({ page }) => {
-  const restaurantsData = await fetchRestaurants(page);
+const RestList = async ({ page, filter }) => {
+  const restaurantsData = await fetchRestaurants(page, filter);
   const restaurants = restaurantsData.restaurants;
   const totalRestaurants = restaurantsData.itemCount;
   const totalPages = Math.ceil(totalRestaurants / 15);

@@ -44,9 +44,14 @@ const Restaurants = ({ searchParams }) => {
             img4={cafe}
             text5={"Asian"}
             img5={asian}
+            to1="georgian"
+            to2="pub"
+            to3="italian"
+            to4="cafe"
+            to5="asian"
           />
         </div>
-        {shouldRenderRestList && <DynamicRestList page={page} />}
+        {shouldRenderRestList && <DynamicRestList filter={[]} page={page} />}
       </div>
     </main>
   );

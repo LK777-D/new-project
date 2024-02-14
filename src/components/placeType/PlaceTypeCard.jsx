@@ -1,7 +1,11 @@
 import Image from "next/image";
-const PlaceTypeCard = ({ text, img }) => {
+import Link from "next/link";
+const PlaceTypeCard = ({ text, img, to }) => {
   return (
-    <div className="flex flex-col min-w-[28%] rounded-lg  h-[7.5rem]  ">
+    <Link
+      href={`restaurants/filter/${to}`}
+      className="flex flex-col min-w-[28%] rounded-lg  h-[7.5rem]  "
+    >
       <div className=" max-h-[70%] ">
         <Image
           className="rounded-t-lg w-full h-full object-cover "
@@ -14,7 +18,7 @@ const PlaceTypeCard = ({ text, img }) => {
       <div className="bg-white py-[7px] pl-2 rounded-b-lg text-sm text-ligh ">
         {text}
       </div>
-    </div>
+    </Link>
   );
 };
 

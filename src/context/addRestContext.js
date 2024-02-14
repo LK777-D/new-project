@@ -11,6 +11,7 @@ const AddRestCtxProvider = ({ children }) => {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [description, setDescription] = useState("");
+  const [restTypes, setRestTypes] = useState([]);
   const [images, setImages] = useState([]);
   const [restDeatils, setRestDetails] = useState(null);
   const [firstFormSubmitted, setFirstFormSubmitted] = useState(false);
@@ -21,7 +22,7 @@ const AddRestCtxProvider = ({ children }) => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [restaurantId, setRestaurantId] = useState(null);
   const [submitRating, setSubmitRating] = useState(false);
-
+  const restaurantTypes = ["ITALIAN", "GEORGIAN", "CAFE", "PUB", "ASIAN"];
   const { user } = useAuthCtx();
   const userEmail = user?.userEmail;
   const userId = user?.userId;
@@ -50,6 +51,7 @@ const AddRestCtxProvider = ({ children }) => {
       description,
       creatorEmail: userEmail,
       createdBy: userId,
+      types: restTypes,
     });
 
     const requestOptions = {
@@ -274,6 +276,9 @@ const AddRestCtxProvider = ({ children }) => {
     reviewType,
     setReviewType,
     addReview,
+    setRestTypes,
+    restaurantTypes,
+    restTypes,
   };
 
   return <addRestCtx.Provider value={ctxValue}>{children}</addRestCtx.Provider>;
